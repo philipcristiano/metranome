@@ -8,16 +8,17 @@ def read(fname):
 
 def run_setup():
     setup(
-        name='',
+        name='metranome',
         version='0.0.1',
-        description='',
-        keywords = '',
-        url='',
-        author='',
-        author_email='@',
-        license='',
-        packages=[''],
+        description='An AMQP Cron-like system',
+        keywords = 'AMQP',
+        url='http://github.com/philipcristiano/metranome',
+        author='Philip Cristiano',
+        author_email='metranome@philipcristiano.com',
+        license='BSD',
+        packages=[],
         install_requires=[
+            'pika'
         ],
         test_suite='tests',
         long_description=read('README.md'),
