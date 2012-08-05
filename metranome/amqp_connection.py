@@ -4,9 +4,6 @@ import time
 import puka
 
 
-class AMQPMetranome(object):
-    pass
-
 class AMQPConnection(object):
 
     def __init__(self):
@@ -20,18 +17,17 @@ class AMQPConnection(object):
             type='topic'
         )
         self._client.wait(promise)
+        self.get_lock()
 
+    def get_lock(self):
         promise = self._client.queue_declare(
             queue='metranome',
             exclusive=True
         )
         self._client.wait(promise)
 
-    def run(self):
-        while True:
-            now = datetime.datetime.utcnow()
-            self._tick()
-            time.sleep(5)
+    def publish_datetime(self, datetime):
+        self._tick(datetime)
 
     def _tick(self, datetime):
         promise = self._client.basic_publish(
