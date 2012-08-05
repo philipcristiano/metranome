@@ -5,8 +5,10 @@ from pika.adapters import BlockingConnection
 from pika import BasicProperties, ConnectionParameters
 
 
-class AMQPConnection(object):
+class AMQPMetranome(object):
+    pass
 
+class AMQPConnection(object):
 
     def __init__(self):
         self.connection = BlockingConnection(
