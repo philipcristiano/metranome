@@ -2,7 +2,7 @@ coverage
 mock
 nose
 pea
-pika
+puka
 sphinx
 unittest2
 -e git://github.com/lacostej/nosyd.git#egg=nosyd

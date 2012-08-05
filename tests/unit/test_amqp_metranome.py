@@ -13,3 +13,7 @@ class TestAMQPMetronome(TestCase):
         )
         self.metranome = AMQPMetranome(self.amqp_connection)
 
+    def test_getting_lock(self):
+          
+
+
