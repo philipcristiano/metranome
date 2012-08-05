@@ -2,7 +2,8 @@ from mock import MagicMock
 from unittest2 import TestCase
 
 from metranome.amqp_connection import AMQPConnection
-from metranome.nome import Metranome, NotLockableException
+from metranome.nome import Metranome
+from metranome.exceptions import NotLockableException
 from metranome.timer import MinuteTimer
 
 

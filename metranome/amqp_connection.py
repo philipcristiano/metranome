@@ -3,6 +3,8 @@ import time
 
 import puka
 
+from metranome.exceptions import NotLockableException
+
 
 class AMQPConnection(object):
 
@@ -17,14 +19,16 @@ class AMQPConnection(object):
             type='topic'
         )
         self._client.wait(promise)
-        self.get_lock()
 
     def get_lock(self):
         promise = self._client.queue_declare(
             queue='metranome',
             exclusive=True
         )
-        self._client.wait(promise)
+        try:
+            self._client.wait(promise)
+        except puka.ResourceLocked:
+            raise NotLockableException
 
     def publish_datetime(self, datetime):
         self._tick(datetime)

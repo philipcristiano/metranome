@@ -1,7 +1,4 @@
-
-
-class NotLockableException(Exception):
-    pass
+from metranome.exceptions import NotLockableException
 
 class Metranome(object):
 
