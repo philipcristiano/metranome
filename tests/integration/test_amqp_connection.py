@@ -18,17 +18,21 @@ class Consumer(object):
         self.channel.queue_bind(exchange='metranome', queue='test_metranome', routing_key='#')
 
     def get(self):
-        print self.channel.basic_get(queue='test_metranome', no_ack=True)
+        return self.channel.basic_get(queue='test_metranome', no_ack=True)
 
 
 class TestAMQPConnection(TestCase):
 
     def setUp(self):
+        self.dt_list = [2012, 8, 5, 12, 1]
         self.amqp_connection = AMQPConnection()
         self.consumer = Consumer()
 
     def test_amqp_tick(self):
-        now = datetime.datetime(2012, 8, 5, 12, 1)
+        now = datetime.datetime(*self.dt_list)
         self.amqp_connection._tick(now)
         time.sleep(.5)
-        self.consumer.get()
+        method, header, body = self.consumer.get()
+        rk = str(method.routing_key)
+        str_dt = map(str, self.dt_list)
+        self.assertEqual(rk, '.'.join(str_dt))
