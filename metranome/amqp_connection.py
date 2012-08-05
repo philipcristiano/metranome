@@ -24,7 +24,7 @@ class AMQPConnection(object):
 
     def _tick(self, datetime):
 
-        print self.channel.basic_publish(
+        self.channel.basic_publish(
             exchange='metranome',
             routing_key= self._datetime_to_routing_key(datetime),
             body='',
