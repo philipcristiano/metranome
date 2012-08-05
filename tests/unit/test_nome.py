@@ -3,6 +3,7 @@ from unittest2 import TestCase
 
 from metranome.amqp_connection import AMQPConnection
 from metranome.nome import Metranome, NotLockableException
+from metranome.timer import MinuteTimer
 
 
 class TestMetranome(TestCase):
@@ -10,7 +11,7 @@ class TestMetranome(TestCase):
     def setUp(self):
         self.continue_policy = MagicMock(side_effect=[True, False])
         self.mock_connection = MagicMock(AMQPConnection)
-        self.timer = MagicMock()
+        self.timer = MagicMock(MinuteTimer)
         self.mn = Metranome(
             self.mock_connection,
             self.timer,
@@ -19,7 +20,7 @@ class TestMetranome(TestCase):
 
     def should_publish_datetime(self):
         self.mn.run()
-        self.mock_connection.publish_datetime.assert_called_once_with(self.timer())
+        self.mock_connection.publish_datetime.assert_called_once_with(self.timer.wait())
 
 class TestMetranomeWithoutLock(TestCase):
 

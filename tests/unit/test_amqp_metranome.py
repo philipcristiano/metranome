@@ -1,7 +1,7 @@
 from mock import MagicMock
 from unittest2 import TestCase
 
-from metranome.amqp_connection import AMQPMetranome, AMQPConnection
+from metranome.amqp_connection import AMQPConnection
 
 class TestAMQPMetronome(TestCase):
 

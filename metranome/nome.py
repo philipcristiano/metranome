@@ -17,5 +17,5 @@ class Metranome(object):
             return False
 
         while self._continue_policy():
-            self._connection.publish_datetime(self._timer())
+            self._connection.publish_datetime(self._timer.wait())
 
