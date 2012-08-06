@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+
 class MinuteTimer(object):
 
     def __init__(self, current_time_func, sleep_func):

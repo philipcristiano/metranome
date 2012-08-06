@@ -23,6 +23,7 @@ class TestMetranome(TestCase):
         self.mn.run()
         self.mock_connection.publish_datetime.assert_called_once_with(self.timer.wait())
 
+
 class TestMetranomeWithoutLock(TestCase):
 
     def setUp(self):
@@ -38,6 +39,3 @@ class TestMetranomeWithoutLock(TestCase):
 
     def test_should_stop_running(self):
         self.assertEqual(self.mn.run(), False)
-
-
-

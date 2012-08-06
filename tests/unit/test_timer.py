@@ -48,4 +48,3 @@ class TestMinuteTimer(TestCase):
         self.timer.wait()
 
         self.sleep_func.assert_called_once_with(25)
-

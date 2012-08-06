@@ -1,5 +1,6 @@
 from metranome.exceptions import NotLockableException
 
+
 class Metranome(object):
 
     def __init__(self, connection, timer, continue_policy):
@@ -15,4 +16,3 @@ class Metranome(object):
 
         while self._continue_policy():
             self._connection.publish_datetime(self._timer.wait())
-
