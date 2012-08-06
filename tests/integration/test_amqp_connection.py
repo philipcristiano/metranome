@@ -10,13 +10,13 @@ from metranome.nome import NotLockableException
 
 
 class Consumer(object):
-    def __init__(self):
+    def __init__(self, routing_key):
         self.connection = BlockingConnection(
             ConnectionParameters(host='33.33.33.10')
         )
         self.channel = self.connection.channel()
         self.queue = self.channel.queue_declare(queue='test_metranome', exclusive=True, auto_delete=False)
-        self.channel.queue_bind(exchange='metranome', queue='test_metranome', routing_key='#')
+        self.channel.queue_bind(exchange='metranome', queue='test_metranome', routing_key=routing_key)
 
     def get(self):
         return self.channel.basic_get(queue='test_metranome', no_ack=True)
@@ -26,8 +26,9 @@ class TestAMQPConnection(TestCase):
 
     def setUp(self):
         self.dt_list = [2012, 8, 5, 12, 1]
+        self.routing_key = '2012.8.5.12.1'
         self.amqp_connection = AMQPConnection()
-        self.consumer = Consumer()
+        self.consumer = Consumer(self.routing_key)
 
     def test_amqp_tick(self):
         now = datetime.datetime(*self.dt_list)
@@ -36,7 +37,7 @@ class TestAMQPConnection(TestCase):
         method, header, body = self.consumer.get()
         rk = str(method.routing_key)
         str_dt = map(str, self.dt_list)
-        self.assertEqual(rk, '.'.join(str_dt))
+        self.assertEqual(rk, self.routing_key)
 
 
 class TestAMQPConnectionLocking(TestCase):
