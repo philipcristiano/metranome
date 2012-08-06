@@ -11,6 +11,10 @@ NOSYD = $(VIRTUALENV_BIN)/nosyd -1
 PIP = $(VIRTUALENV_BIN)/pip
 PYTHON = $(ENV) $(VIRTUALENV_BIN)/python
 
+.PHONY: main
+main:
+	PYTHONPATH=. $(VIRTUALENV_BIN)/python metranome/main.py
+
 .PHONY: test
 test: unit-test integration-test acceptance-test
 

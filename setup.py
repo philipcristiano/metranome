@@ -27,6 +27,7 @@ def run_setup():
         ],
         entry_points="""
         [console_scripts]
+            metranome=metranome.main:main
         """,
     )
 
