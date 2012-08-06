@@ -41,9 +41,10 @@ class AMQPConnection(object):
         self._client.wait(promise)
 
     def _datetime_to_routing_key(self, dt):
-        return '{0}.{1}.{2}.{3}.{4}'.format(
+        return '{0}.{1}.{2}.{3}.{4}.{5}'.format(
            dt.year,
            dt.month,
+           dt.weekday(),
            dt.day,
            dt.hour,
            dt.minute
