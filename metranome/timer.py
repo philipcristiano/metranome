@@ -20,3 +20,4 @@ class MinuteTimer(object):
         )
         sleep_for = until - now
         self.sleep_func(sleep_for.total_seconds())
+        return until

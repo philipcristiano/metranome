@@ -14,6 +14,14 @@ class TestMinuteTimer(TestCase):
 
         self.timer = MinuteTimer(self.get_current_time, self.sleep_func)
 
+    def should_return_datetime_of_next_minute(self):
+        now = datetime(2012, 8, 6, 17, 53, 42)
+        self.get_current_time.return_value = now
+
+        returned = self.timer.wait()
+
+        self.assertEqual(returned, datetime(2012, 8, 6, 17, 54, 0))
+
     def should_sleep_until_next_minute_when_2_seconds_until(self):
         now = datetime(2012, 8, 5, 17, 0, 58)
         self.get_current_time.return_value = now
