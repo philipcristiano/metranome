@@ -1,10 +1,16 @@
 *.py[co]
 
+# Project
+/local.config
+
 # Testing
 nosetests.xml
 
 # virtualenv
 venv/
+
+#PyCharm
+.idea
 
 # Packages
 *.egg
