@@ -3,6 +3,7 @@ coverage
 mock
 nose
 pea
+pika
 puka
 sphinx
 unittest2
