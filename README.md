@@ -32,3 +32,15 @@ If you want a task to run every 5 minutes bind to:
 
 *.*.*.*.*.55
 ```
+
+Hacking Metranome
+=================
+
+* Clone the project
+* Copy `local.config.example` to `local.config` and add your RabbitMQ host
+* Make the development environment `make virtualenv requirements`
+* Hack away!
+
+Useful:
+You can run tests `make test`
+Run Metranome `make main`
