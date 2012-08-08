@@ -8,8 +8,8 @@ from metranome.exceptions import NotLockableException
 
 class AMQPConnection(object):
 
-    def __init__(self):
-        self._client = puka.Client("amqp://33.33.33.10/")
+    def __init__(self, host):
+        self._client = puka.Client(host)
         promise = self._client.connect()
         time.sleep(.1)
         self._client.wait(promise)

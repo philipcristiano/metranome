@@ -6,7 +6,9 @@ from pika.adapters import BlockingConnection
 from pika import BasicProperties, ConnectionParameters
 
 from metranome.amqp_connection import AMQPConnection
+from metranome.config import config
 from metranome.nome import NotLockableException
+from tests.helpers import amqp_connection_from_config
 
 
 class Consumer(object):
@@ -27,7 +29,7 @@ class TestAMQPConnection(TestCase):
     def setUp(self):
         self.dt_list = [2012, 8, 5, 12, 1]
         self.routing_key = '2012.8.6.5.12.1'
-        self.amqp_connection = AMQPConnection()
+        self.amqp_connection = amqp_connection_from_config(config)
         self.consumer = Consumer(self.routing_key)
 
     def test_amqp_tick(self):
@@ -43,8 +45,8 @@ class TestAMQPConnection(TestCase):
 class TestAMQPConnectionLocking(TestCase):
 
     def setUp(self):
-        self.amqp_connection = AMQPConnection()
-        self.amqp_connection2 = AMQPConnection()
+        self.amqp_connection = amqp_connection_from_config(config)
+        self.amqp_connection2 = amqp_connection_from_config(config)
 
     def test_amqp_lock(self):
         self.amqp_connection.get_lock()
