@@ -19,5 +19,15 @@ class MinuteTimer(object):
             a_minute_from_now.minute,
         )
         sleep_for = until - now
-        self.sleep_func(sleep_for.total_seconds())
+        self.sleep_func(total_seconds_for_timedelta(sleep_for))
         return until
+
+def total_seconds_for_timedelta(td):
+    """Convert a timedelta to total seconds.
+
+    This is taken from
+    http://docs.python.org/library/datetime.html#datetime.timedelta.total_seconds
+    as `total_seconds` was added in 2.7
+
+    """
+    return (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
