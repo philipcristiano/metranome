@@ -28,7 +28,7 @@ class TestAMQPConnection(TestCase):
 
     def setUp(self):
         self.dt_list = [2012, 8, 5, 12, 1]
-        self.routing_key = '2012.8.6.5.12.1'
+        self.routing_key = '2012.8.5.6.12.1'
         self.amqp_connection = create_amqp_connection_from_config(config)
         self.consumer = Consumer(self.routing_key)
 

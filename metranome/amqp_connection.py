@@ -44,8 +44,8 @@ class AMQPConnection(object):
         return '{0}.{1}.{2}.{3}.{4}.{5}'.format(
            dt.year,
            dt.month,
-           dt.weekday(),
            dt.day,
+           dt.weekday(),
            dt.hour,
            dt.minute
         )

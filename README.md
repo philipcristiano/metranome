@@ -13,7 +13,7 @@ Using Metranome
 
 Metranome will publish an event every minute. Listeners can bind to the topic
 exchange `metranome` with the routing key matching the
-`year.month.day_of_week_int.day.hour.minute`.
+`year.month.day.day_of_week_int.hour.minute`.
 
 `day_of_week_int` is 0-6, Monday-Sunday.
 
